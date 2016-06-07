@@ -1,0 +1,72 @@
+.beacon-size{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	position: absolute;
+	background-color: red;
+}
+.color-ratings{
+	width: 20px;
+	height: 20px;
+}
+.color-list{
+    position: absolute;
+    list-style: none;
+    top: 222px;
+    right: 104px;
+}
+.popup {
+    padding: 10px;
+    background: #686564;
+    border-radius: 5px;
+    width: 20%;
+    transition: all 5s ease-in-out;
+    color: white;
+}
+.floor-img{
+	width: 800px;
+	height: 800px;
+}
+#region1{
+    position: absolute;
+    top: 336px;
+    left: 261px;
+}
+
+#region2{
+    position: absolute;
+    top: 416px;
+    left: 231px;
+}
+
+#region3{
+    position: absolute;
+    top: 416px;
+    left: 289px;
+}
+
+#region4{
+    position: absolute;
+    top: 402px;
+    left: 187px;
+}
+
+#region5{
+ 	position: absolute;
+    top: 416px;
+    left: 331px;
+
+}
+
+#region6{
+ 	position: absolute;
+    top: 392px;
+    left: 371px;
+
+}
+
+#region7{
+    position: absolute;
+    top: 515px;
+    left: 372px;
+}
