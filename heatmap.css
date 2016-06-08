@@ -3,25 +3,34 @@
 	height: 20px;
 	border-radius: 50%;
 	position: absolute;
-	background-color: red;
+	background-color: black;
 }
 .color-ratings{
 	width: 20px;
 	height: 20px;
+    color: burlywood;
+    text-align: center;
 }
 .color-list{
     position: absolute;
     list-style: none;
-    top: 222px;
-    right: 104px;
+    top: 216px;
+    left: 524px;
 }
 .popup {
     padding: 10px;
     background: #686564;
     border-radius: 5px;
-    width: 20%;
-    transition: all 5s ease-in-out;
+    width: 14%;
     color: white;
+    display: none;
+    position: absolute;
+}
+.popup button{
+    float: right;
+    position: absolute;
+    top: 5px;
+    right: 0px;
 }
 .floor-img{
 	width: 800px;
@@ -52,16 +61,16 @@
 }
 
 #region5{
- 	position: absolute;
-    top: 416px;
-    left: 331px;
+  position: absolute;
+  top: 416px;
+  left: 331px;
 
 }
 
 #region6{
- 	position: absolute;
-    top: 392px;
-    left: 371px;
+  position: absolute;
+  top: 392px;
+  left: 371px;
 
 }
 
@@ -69,4 +78,15 @@
     position: absolute;
     top: 515px;
     left: 372px;
+}
+.from-to{
+    list-style: none;
+    display: flex;
+    position: absolute;
+    top: 216px;
+    left: 300px;    
+}
+
+.from-to li{
+    margin-left: 5px;   
 }

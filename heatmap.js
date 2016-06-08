@@ -98,49 +98,58 @@ var a= [{
 
 var timeSpentAtEachBeacon = [0,0,0,0,0,0,0];
 var noOfMobilesAtEachBeacon = [0,0,0,0,0,0,0];
+var timeSpentAtEachBeaconInMin = [0,0,0,0,0,0,0];
 var score;
+
 for(var i=0; i<a.length; i++){
-	 score = score1(Math.round(a[i].timeSpent/60 ));
+	 score = scoreCalculator(Math.round(a[i].timeSpent/60 ));
 	switch(a[i].region){
 			
 			case "stall_1" :
 				timeSpentAtEachBeacon[0]+= score;
+        timeSpentAtEachBeaconInMin[0]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[0]++;
 				break;
 
 			case "stall_2" :
 				timeSpentAtEachBeacon[1]+= score;
+        timeSpentAtEachBeaconInMin[1]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[1]++;
 				break;
 
 			case "stall_3" :
 				timeSpentAtEachBeacon[2]+= score;
+        timeSpentAtEachBeaconInMin[2]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[2]++;
 				break;
 			
 			case "stall_4" :
 				timeSpentAtEachBeacon[3]+= score;
+        timeSpentAtEachBeaconInMin[3]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[3]++;
 				break;
 
 			case "stall_5" :
 				timeSpentAtEachBeacon[4]+= score;
+        timeSpentAtEachBeaconInMin[4]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[4]++;
 				break;
 
 			case "stall_6" :
 				timeSpentAtEachBeacon[5]+= score;
+        timeSpentAtEachBeaconInMin[5]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[5]++;
 				break;
 
 			case "stall_7" :
 				timeSpentAtEachBeacon[6]+= score;
+        timeSpentAtEachBeaconInMin[6]+=Math.round(a[i].timeSpent/60 );
 				noOfMobilesAtEachBeacon[6]++;
 				break;
 	}
 }
 
-function score1(timeSpent){
+function scoreCalculator(timeSpent){
 
 	if(timeSpent <= 2){return 0}
 
@@ -156,10 +165,19 @@ function score1(timeSpent){
 }
 
 var maxTimeSpent = Math.max(...timeSpentAtEachBeacon);
-
-var timeSpentAtEachBeaconCopy = timeSpentAtEachBeacon;
-
+var popupBox = document.querySelector('.popup');
+var closeButton = popupBox.querySelector('.close-button');
+closeButton.addEventListener('click',closeDetails);
 var beacons = document.getElementsByClassName('beacon-size');
+var okButton = document.querySelector('.ok');
+var startTime = document.querySelector('.from');
+var endTime = document.querySelector('.to');
+
+
+okButton.addEventListener('click',getTheTimePeriod);
+for(var i=0; i < beacons.length ; i++){
+beacons[i].addEventListener('click',showDetails)
+}
 for(var i = 0 ; i < timeSpentAtEachBeacon.length ; i++){
 	timeSpentAtEachBeacon[i] =  Math.round(timeSpentAtEachBeacon[i]/maxTimeSpent * 5 );
 
@@ -187,8 +205,39 @@ for(var i = 0 ; i < timeSpentAtEachBeacon.length ; i++){
 }
 
 
-// function showDetails
+function showDetails(event){
+	var x = event.currentTarget.offsetLeft;
+	var y = event.currentTarget.offsetTop;
+  var beaconNumber = parseInt(event.currentTarget.getAttribute('name'));
+  console.log(x,y);
 
+	popupBox.style.display = "block";
+  popupBox.style.left = x+"px";
+  popupBox.style.top = y+"px";
+	popupBox.querySelector('#TotalNumberOfUsers').innerHTML =  "Total Users     : "+noOfMobilesAtEachBeacon[beaconNumber-1];
+	popupBox.querySelector('#TotalNumberOfMobile').innerHTML = "Total Time(min) : " +timeSpentAtEachBeaconInMin[beaconNumber-1];
+
+}
+
+function closeDetails(){
+  popupBox.style.display = "none";
+  removeEventListener('click',this);
+}
+
+function getTheTimePeriod(){
+  var startTimeISO = new Date();
+  var endTimeISO = new Date();
+
+  startTimeISO.setHours(startTime.options[ startTime.selectedIndex ].value );
+  endTimeISO.setHours(endTime.options[ endTime.selectedIndex ].value );
+  startTimeISO.setMinutes(00);
+  endTimeISO.setMinutes(00);
+  startTimeISO.setSeconds(00);
+  endTimeISO.setSeconds(00);
+
+  console.log(startTimeISO.toISOString());
+  console.log(endTimeISO.toISOString());
+}
 
 
 
